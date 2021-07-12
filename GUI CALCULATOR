@@ -1,0 +1,145 @@
+from tkinter import *
+from tkinter.messagebox import *
+
+
+def click(event):
+	try:
+	
+		global value
+	
+		value = value +str(event)
+
+		
+		data.set(value)
+		pos = cal_window_ent.index(INSERT)
+		cal_window_ent.icursor(pos + 1)
+	
+	except Exception as e:
+		showerror("issue","You have Entered Wrong value")
+		cal_window_ent.delete(0, END)
+	
+
+def ac():
+	global value
+	value = ""
+	data.set("")
+
+def eq():
+	try:
+		global value
+		sum = str(eval(value))
+		data.set(sum)
+		value=""
+	except Exception as e:
+		showerror("issue","You have Entered Wrong value")
+		cal_window_ent.delete(0, END)
+
+def shift_left(event=NONE):
+	pos = cal_window_ent.index(INSERT)
+	cal_window_ent.icursor(pos - 1)
+
+def shift_right(event=NONE):
+	pos = cal_window_ent.index(INSERT)
+	cal_window_ent.icursor(pos + 1)
+	
+def c():
+	#num = len(cal_window_ent.get())
+	#cal_window_ent.delete(num - 1)
+
+	pos = cal_window_ent.index(INSERT)
+	cal_window_ent.delete(pos - 1)
+
+
+	#if num == 1:
+		#cal_window_ent.insert(0, "0")
+		
+cal_window = Tk()
+cal_window.title("CALCULATOR")
+cal_window.wm_iconbitmap("cal.ico")
+cal_window.geometry("500x500+400+150")
+
+f = ('Calibri', 18, 'bold')
+f0 = ('Calibri', 12, 'bold')
+f1 = ('Calibri', 24, 'bold')
+value = ""
+
+data = StringVar()
+cal_window_ent = Entry(cal_window, textvariable=data, bd=20, insertwidth=5, width=30, font=f1)
+cal_window_ent.focus()
+#cal_window_ent.icursor(0)
+
+cal_window_ac_btn = Button(cal_window, text="AC", width=10, font=f, command=ac)
+cal_window_mod_btn = Button(cal_window, text="%", width=5, font=f, command=lambda:click("%"))
+cal_window_div_btn = Button(cal_window, text="/", width=5, font=f, command=lambda:click("/"))
+cal_window_mul_btn = Button(cal_window, text="X", width=5, font=f, command=lambda:click("*"))
+cal_window_sub_btn = Button(cal_window, text="-", width=5, font=f, command=lambda:click("-"))
+cal_window_add_btn = Button(cal_window, text="+", width=5, font=f, command=lambda:click("+"))
+cal_window_sqr_btn = Button(cal_window, text="^", width=3, font=f, command=lambda:click("**"))
+cal_window_eq_btn = Button(cal_window, text="=", width=5, font=f, command=eq)
+cal_window_dot_btn = Button(cal_window, text=".", width=5, font=f, command=lambda:click("."))
+cal_window_nine_btn = Button(cal_window, text="9", width=5, font=f, command=lambda:click(9))
+cal_window_eight_btn = Button(cal_window, text="8", width=5, font=f, command=lambda:click(8))
+cal_window_seven_btn = Button(cal_window, text="7", width=5, font=f, command=lambda:click(7))
+cal_window_six_btn = Button(cal_window, text="6", width=5, font=f, command=lambda:click(6))
+cal_window_five_btn = Button(cal_window, text="5", width=5, font=f, command=lambda:click(5))
+cal_window_four_btn = Button(cal_window, text="4", width=5, font=f, command=lambda:click(4))
+cal_window_three_btn = Button(cal_window, text="3", width=5, font=f, command=lambda:click(3))
+cal_window_two_btn = Button(cal_window, text="2", width=5, font=f, command=lambda:click(2))
+cal_window_one_btn = Button(cal_window, text="1", width=5, font=f, command=lambda:click(1))
+cal_window_zero_btn = Button(cal_window, text="0", width=13, font=f, command=lambda:click(0))
+cal_window_c_btn = Button(cal_window, text="C", width=3, font=f, command=c)
+cal_window_shiftL_btn = Button(cal_window, text="<-", width=3, font=f, command=shift_left)
+cal_window_shiftR_btn = Button(cal_window, text="->", width=3, font=f, command=shift_right)
+
+
+cal_window_name_lb1= Label(cal_window, text= "Project by: SAHIL SHINDE", font=f)
+cal_window.configure(background = "light green")
+cal_window_name_lb1.configure(background = "light green")
+
+
+
+cal_window_ent.pack(ipadx=30,ipady=15)
+cal_window_ac_btn.place(x=40, y=120)
+cal_window_mod_btn.place(x=240, y=120)
+cal_window_div_btn.place(x=340, y=120)
+cal_window_mul_btn.place(x=340, y=180)
+cal_window_sub_btn.place(x=340, y=240)
+cal_window_add_btn.place(x=340, y=300)
+cal_window_eq_btn.place(x=340, y=360)
+cal_window_dot_btn.place(x=240, y=360)
+cal_window_nine_btn.place(x=240, y=180)
+cal_window_eight_btn.place(x=140, y=180)
+cal_window_seven_btn.place(x=40, y=180)
+cal_window_six_btn.place(x=240, y=240)
+cal_window_five_btn.place(x=140, y=240)
+cal_window_four_btn.place(x=40, y=240)
+cal_window_three_btn.place(x=240, y=300)
+cal_window_two_btn.place(x=140, y=300)
+cal_window_one_btn.place(x=40, y=300)
+cal_window_zero_btn.place(x=40, y=360)
+cal_window_c_btn.place(x=430, y=120)
+cal_window_shiftL_btn.place(x=430, y=180)
+cal_window_shiftR_btn.place(x=430, y=240)
+cal_window_sqr_btn.place(x=430, y=300)
+
+cal_window_name_lb1.place(x=50, y=440)
+
+cal_window.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
